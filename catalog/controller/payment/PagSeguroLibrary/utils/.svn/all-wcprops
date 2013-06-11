@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/uol-fila-pagseguro/!svn/ver/361/trunk/fontes/opencart/catalog/controller/payment/PagSeguroLibrary/utils
+END
+PagSeguroXmlParser.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/uol-fila-pagseguro/!svn/ver/360/trunk/fontes/opencart/catalog/controller/payment/PagSeguroLibrary/utils/PagSeguroXmlParser.class.php
+END
+PagSeguroHttpConnection.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 138
+/uol-fila-pagseguro/!svn/ver/361/trunk/fontes/opencart/catalog/controller/payment/PagSeguroLibrary/utils/PagSeguroHttpConnection.class.php
+END

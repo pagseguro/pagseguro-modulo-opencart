@@ -1,0 +1,143 @@
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/uol-fila-pagseguro/!svn/ver/379/trunk/fontes/opencart/catalog/controller/payment/PagSeguroLibrary/domain
+END
+PagSeguroPaymentMethodCode.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 142
+/uol-fila-pagseguro/!svn/ver/361/trunk/fontes/opencart/catalog/controller/payment/PagSeguroLibrary/domain/PagSeguroPaymentMethodCode.class.php
+END
+PagSeguroPhone.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/uol-fila-pagseguro/!svn/ver/360/trunk/fontes/opencart/catalog/controller/payment/PagSeguroLibrary/domain/PagSeguroPhone.class.php
+END
+PagSeguroTransactionSearchResult.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 148
+/uol-fila-pagseguro/!svn/ver/360/trunk/fontes/opencart/catalog/controller/payment/PagSeguroLibrary/domain/PagSeguroTransactionSearchResult.class.php
+END
+PagSeguroAccountCredentials.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 143
+/uol-fila-pagseguro/!svn/ver/360/trunk/fontes/opencart/catalog/controller/payment/PagSeguroLibrary/domain/PagSeguroAccountCredentials.class.php
+END
+PagSeguroPaymentMethod.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 138
+/uol-fila-pagseguro/!svn/ver/360/trunk/fontes/opencart/catalog/controller/payment/PagSeguroLibrary/domain/PagSeguroPaymentMethod.class.php
+END
+PagSeguroSenderDocument.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 139
+/uol-fila-pagseguro/!svn/ver/379/trunk/fontes/opencart/catalog/controller/payment/PagSeguroLibrary/domain/PagSeguroSenderDocument.class.php
+END
+PagSeguroPaymentMethodType.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 142
+/uol-fila-pagseguro/!svn/ver/360/trunk/fontes/opencart/catalog/controller/payment/PagSeguroLibrary/domain/PagSeguroPaymentMethodType.class.php
+END
+PagSeguroSender.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 131
+/uol-fila-pagseguro/!svn/ver/361/trunk/fontes/opencart/catalog/controller/payment/PagSeguroLibrary/domain/PagSeguroSender.class.php
+END
+PagSeguroShipping.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/uol-fila-pagseguro/!svn/ver/360/trunk/fontes/opencart/catalog/controller/payment/PagSeguroLibrary/domain/PagSeguroShipping.class.php
+END
+PagSeguroShippingType.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 137
+/uol-fila-pagseguro/!svn/ver/360/trunk/fontes/opencart/catalog/controller/payment/PagSeguroLibrary/domain/PagSeguroShippingType.class.php
+END
+PagSeguroHttpStatus.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 135
+/uol-fila-pagseguro/!svn/ver/360/trunk/fontes/opencart/catalog/controller/payment/PagSeguroLibrary/domain/PagSeguroHttpStatus.class.php
+END
+PagSeguroTransaction.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/uol-fila-pagseguro/!svn/ver/360/trunk/fontes/opencart/catalog/controller/payment/PagSeguroLibrary/domain/PagSeguroTransaction.class.php
+END
+PagSeguroAddress.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/uol-fila-pagseguro/!svn/ver/360/trunk/fontes/opencart/catalog/controller/payment/PagSeguroLibrary/domain/PagSeguroAddress.class.php
+END
+PagSeguroPaymentRequest.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 139
+/uol-fila-pagseguro/!svn/ver/361/trunk/fontes/opencart/catalog/controller/payment/PagSeguroLibrary/domain/PagSeguroPaymentRequest.class.php
+END
+PagSeguroTransactionType.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 140
+/uol-fila-pagseguro/!svn/ver/360/trunk/fontes/opencart/catalog/controller/payment/PagSeguroLibrary/domain/PagSeguroTransactionType.class.php
+END
+PagSeguroNotificationType.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 141
+/uol-fila-pagseguro/!svn/ver/360/trunk/fontes/opencart/catalog/controller/payment/PagSeguroLibrary/domain/PagSeguroNotificationType.class.php
+END
+PagSeguroError.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/uol-fila-pagseguro/!svn/ver/360/trunk/fontes/opencart/catalog/controller/payment/PagSeguroLibrary/domain/PagSeguroError.class.php
+END
+PagSeguroTransactionStatus.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 142
+/uol-fila-pagseguro/!svn/ver/360/trunk/fontes/opencart/catalog/controller/payment/PagSeguroLibrary/domain/PagSeguroTransactionStatus.class.php
+END
+PagSeguroCredentials.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/uol-fila-pagseguro/!svn/ver/360/trunk/fontes/opencart/catalog/controller/payment/PagSeguroLibrary/domain/PagSeguroCredentials.class.php
+END
+PagSeguroItem.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 129
+/uol-fila-pagseguro/!svn/ver/360/trunk/fontes/opencart/catalog/controller/payment/PagSeguroLibrary/domain/PagSeguroItem.class.php
+END
+PagSeguroDocuments.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 134
+/uol-fila-pagseguro/!svn/ver/379/trunk/fontes/opencart/catalog/controller/payment/PagSeguroLibrary/domain/PagSeguroDocuments.class.php
+END
+PagSeguroCurrencies.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 135
+/uol-fila-pagseguro/!svn/ver/360/trunk/fontes/opencart/catalog/controller/payment/PagSeguroLibrary/domain/PagSeguroCurrencies.class.php
+END
+PagSeguroTransactionSummary.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 143
+/uol-fila-pagseguro/!svn/ver/360/trunk/fontes/opencart/catalog/controller/payment/PagSeguroLibrary/domain/PagSeguroTransactionSummary.class.php
+END

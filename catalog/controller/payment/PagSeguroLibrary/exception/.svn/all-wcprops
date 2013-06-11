@@ -1,0 +1,11 @@
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/uol-fila-pagseguro/!svn/ver/360/trunk/fontes/opencart/catalog/controller/payment/PagSeguroLibrary/exception
+END
+PagSeguroServiceException.class.php
+K 25
+svn:wc:ra_dav:version-url
+V 144
+/uol-fila-pagseguro/!svn/ver/360/trunk/fontes/opencart/catalog/controller/payment/PagSeguroLibrary/exception/PagSeguroServiceException.class.php
+END
