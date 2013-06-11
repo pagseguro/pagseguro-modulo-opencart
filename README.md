@@ -1,5 +1,5 @@
 Módulo de integração PagSeguro para OpenCart
-==============================================
+============================================
 ---
 Descrição
 ---------
@@ -27,13 +27,13 @@ Instalação
  - Baixe o repositório como arquivo zip ou faça um clone;
  - Copie as pastas *admin* e *catalog* para dentro de sua instalação OpenCart. Caso seja informado da sobrescrita de alguns arquivos, você pode confirmar o procedimento sem problemas. Esta instalação não afetará nenhum arquivo do seu sistema, somente adicionará os arquivos do módulo PagSeguro;
  - Certifique-se de que as permissões das pastas e arquivos recém copiados sejam, respectivamente, definidas como 755 e 644;
- - Na área administrativa do seu sistema, acesse o menu Extensions -> Payments -> PagSeguro [install].
+ - Na área administrativa do seu sistema, acesse o menu Extensions -> Payments -> PagSeguro -> Install.
 
 
 Configuração
 ------------
 ---
-Para acessar e configurar o módulo acesse o menu Extensions -> Payments -> PagSeguro [Edit]. As opções disponíveis estão descritas abaixo.
+Para acessar e configurar o módulo acesse o menu Extensions -> Payments -> PagSeguro -> Edit. As opções disponíveis estão descritas abaixo.
 
  - **ativar módulo**: ativa/desativa o módulo.
  - **ordem de exibição**: define a ordem em que o PagSeguro vai aparecer no checkout de sua loja.
@@ -45,16 +45,13 @@ Para acessar e configurar o módulo acesse o menu Extensions -> Payments -> PagS
  - **log**: ativa/desativa a geração de logs.
  - **diretório**: informe o local a partir da raíz de instalação do osCommerce onde se deseja criar o arquivo de log. Ex.: /logs/ps.log. Caso não informe nada, o log será gravado dentro da pasta ../PagSeguroLibrary/PagSeguro.log.
 
+
 Changelog
 ---------
 ---
 1.0
 
- - Adicionado: Integração com API de Notificação.
-
-1.0
-
- - Versão inicial. Integração com API de checkout do PagSeguro.
+ - Versão inicial. Integração com API de checkout e API de notificações.
 
 
 Licença
@@ -81,7 +78,7 @@ Notas
 [Dúvidas?]
 ----------
 ---
-Mande um [e-mail] ou acesse o [fórum] de discussões.
+Em caso de dúvidas mande um e-mail para desenvolvedores@pagseguro.com.br
 
 
 Contribuições
@@ -96,12 +93,9 @@ Achou e corrigiu um bug ou tem alguma feature em mente e deseja contribuir?
 
   [API de Pagamentos]: https://pagseguro.uol.com.br/v2/guia-de-integracao/api-de-pagamentos.html
   [API de Notificações]: https://pagseguro.uol.com.br/v2/guia-de-integracao/api-de-notificacoes.html
-  [e-mail]: <mailto:desenvolvedores@pagseguro.com.br>
-  [fórum]: http://forum.imasters.com.br/forum/244-gateways-e-meios-de-pagamento-online-pagseguro
   [Dúvidas?]: https://pagseguro.uol.com.br/desenvolvedor/comunidade.jhtml
   [Pagamentos via API]: https://pagseguro.uol.com.br/integracao/pagamentos-via-api.jhtml
   [Notificação de Transações]: https://pagseguro.uol.com.br/integracao/notificacao-de-transacoes.jhtml
-  [máquina de estados]: https://pagseguro.uol.com.br/v2/guia-de-integracao/api-de-notificacoes.html#v2-item-api-de-notificacoes-status-da-transacao
   [OpenCart]: http://www.opencart.com/
   [PHP]: http://www.php.net/
   [SPL]: http://php.net/manual/en/book.spl.php

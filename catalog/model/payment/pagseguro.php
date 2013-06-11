@@ -36,18 +36,18 @@ class ModelPaymentPagSeguro extends Model {
     );
       
     /**
-     * Array with the status PagSeguro, English and Portuguese
+     * Array with the PagSeguro status, Portuguese and English
      * @var array 
      */
     private static $array_order_status = array(
-	0 => array('br' => 'Iniciado', 'en' => 'Initiated'),
-        1 => array('br' => 'Aguardando pagamento', 'en' => 'Waiting payment'),
-        2 => array('br' => 'Em análise', 'en' => 'In analysis'),
+	0 => array('br' => 'Iniciada', 'en' => 'Pending'),
+        1 => array('br' => 'Aguardando pagamento', 'en' => 'Awaiting payment'),
+        2 => array('br' => 'Em análise', 'en' => 'Processing'),
         3 => array('br' => 'Paga', 'en' => 'Paid'),
-        4 => array('br' => 'Disponível', 'en' => 'Available'),
-        5 => array('br' => 'Em disputa', 'en' => 'In dispute'),
+        4 => array('br' => 'Disponível', 'en' => 'Complete'),
+        5 => array('br' => 'Em disputa', 'en' => 'Dispute'),
         6 => array('br' => 'Devolvida', 'en' => 'Refunded'),
-        7 => array('br' => 'Cancelada', 'en' => 'Cancelled'));
+        7 => array('br' => 'Cancelada', 'en' => 'Canceled'));
     
         /**
          * 

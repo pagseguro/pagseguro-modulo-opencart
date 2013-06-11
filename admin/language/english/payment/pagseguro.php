@@ -37,25 +37,25 @@ $_['directory']                                          = 'DIRECTORY';
 $_['iso']                                                = 'ISO-8859-1';
 $_['utf']                                                = 'UTF-8';
 
-$_['text_success']					 = 'Success: You have modified PagSeguro account details!';
+$_['text_success']					 = 'Success: You have modified settings!';
 
-$_['text_module']                                        = 'Want Enable Module ?';
-$_['text_order']                                         = 'Enter the order in which they should appear in the PagSeguro checkout your store.';
-$_['text_email']                                         = 'No account PagSeguro? <a href="https://pagseguro.uol.com.br/registration/registration.jhtml?ep=6&tipo=cadastro#!vendedor" target="_blank">Click here </a> and register for free.';
-$_['text_token']                                         = 'Do not have or know your token? <a href="https://pagseguro.uol.com.br/integracao/token-de-seguranca.jhtml" target="_blank">Click here </a> to generate a new one.';
-$_['text_url_forwarding']                                = 'Your customer will be redirected back to your store or to the URL you enter in this field. <a href="https://pagseguro.uol.com.br/integracao/pagamentos-via-api.jhtml" target="_blank">Click here </a> to activate.'; 
-$_['text_url_notification']                              = 'Whenever a transaction change of status, PagSeguro sends a notification to your store or to the URL you enter in this field.';
+$_['text_module']                                        = 'Enable the module?';
+$_['text_order']                                         = 'Enter the order in which PagSeguro should appear in your store checkout.';
+$_['text_email']                                         = 'Do not have a PagSeguro account? <a href="https://pagseguro.uol.com.br/registration/registration.jhtml?ep=10&tipo=cadastro#!vendedor" target="_blank">Click here </a> and register for free.';
+$_['text_token']                                         = 'Do not have or do not know your token? <a href="https://pagseguro.uol.com.br/integracao/token-de-seguranca.jhtml" target="_blank">Click here </a> to generate a new one.';
+$_['text_url_forwarding']                                = 'Your customer will be redirected back to your store or to the URL entered in this field. <a href="https://pagseguro.uol.com.br/integracao/pagamentos-via-api.jhtml" target="_blank">Click here </a> to activate.'; 
+$_['text_url_notification']                              = 'Whenever a transaction change its status, PagSeguro sends a notification to your store or to the URL entered in this field.';
 $_['text_charset']                                       = 'Set the charset according to the coding of your system.';  
 $_['text_log']                                           = 'Create log file?';
 $_['text_directory']                                     = 'Path to the log file.';
 
 
 // ERROR
-$_['error_permission']				 = 'Warning: You do not have permission to modify payment PagSeguro!';
-$_['error_email_required']		         = 'E-Mail required!';
+$_['error_permission']				 = 'Warning: You do not have permission to modify settings!';
+$_['error_email_required']		         = 'E-mail required!';
 $_['error_email_invalid']		         = 'Invalid E-mail!';
 $_['error_token_required']		         = 'Token required!';
-$_['error_token_invalid']		         = 'Size Token Invalid!';
+$_['error_token_invalid']		         = 'Invalid Token!';
 
 
 ?>
