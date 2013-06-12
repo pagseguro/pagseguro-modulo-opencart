@@ -110,7 +110,6 @@ class ControllerPaymentPagSeguro extends Controller {
          * @return \PagSeguroPaymentRequest
          */
     private function _generatePagSeguroPaymentRequestObject(){
-            
             $paymentRequest = new PagSeguroPaymentRequest();
             $paymentRequest->setCurrency( PagSeguroCurrencies::getIsoCodeByName("REAL") );
             $paymentRequest->setExtraAmount( $this->_generateExtraAmount() );
@@ -147,7 +146,12 @@ class ControllerPaymentPagSeguro extends Controller {
            * @return redirect url
            */
           private function _getPagSeguroRedirectUrl(){
-              return $this->config->get('pagseguro_forwarding');
+              
+              if( $this->_isNotNull($this->config->get('pagseguro_forwarding')) )
+                  return $this->config->get('pagseguro_forwarding');
+              
+              return HTTPS_SERVER."index.php?route=checkout/success";
+                            
           }
           
           /**
@@ -155,7 +159,11 @@ class ControllerPaymentPagSeguro extends Controller {
            * @return notification url
            */
           private function _getPagSeguroNotificationURL(){
-              return $this->config->get('pagseguro_url_notification');
+              
+              if( $this->_isNotNull($this->config->get('pagseguro_url_notification')) )
+                  return $this->config->get('pagseguro_url_notification');
+              
+              return HTTPS_SERVER."index.php?route=payment/pagseguro_notification";
           }
           
           /**
@@ -297,6 +305,19 @@ class ControllerPaymentPagSeguro extends Controller {
               $this->data['action'] =  HTTP_SERVER."index.php?route=payment/pagseguro_redirect";
               $this->data['url_ps'] =  $this->_urlPagSeguro;
          } 
+     }
+     
+     /**
+      * Validate if value is not null
+      * @param type $value
+      * @return boolean
+      */
+     private function _isNotNull($value){
+         
+         if( $value != null && $value != "" )
+             return TRUE;
+         
+         return false;
      }
   }
 ?>

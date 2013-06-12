@@ -105,7 +105,7 @@ class ControllerPaymentPagSeguro extends Controller {
              if( isset($this->request->post['pagseguro_forwarding'] ))
                  $this->data['pagseguro_forwarding'] = $this->request->post['pagseguro_forwarding'];
              else
-                 $this->data['pagseguro_forwarding'] = $this->config->get('pagseguro_forwarding');
+                 $this->data['pagseguro_forwarding'] = $this->validateRedirectUrl();
              
              if( isset( $this->request->post['pagseguro_url_notification'] ))
                  $this->data['pagseguro_url_notification'] = $this->request->post['pagseguro_url_notification'];
@@ -249,6 +249,7 @@ class ControllerPaymentPagSeguro extends Controller {
             $this->_validateEmail();
             $this->_validateToken();
             $this->_notificationUrl();
+            $this->_redirectUrl();
             
             return ( empty(  $this->error ) ) ? true : false;
             
@@ -342,6 +343,16 @@ class ControllerPaymentPagSeguro extends Controller {
                 return $value;
         }
         
+         private function validateRedirectUrl(){
+            
+            $value = $this->config->get('pagseguro_forwarding');
+           
+                if( empty( $value ) )
+                     return $this->_generationRedirectUrl();
+
+                return $value;
+        }
+        
         /**
          * Notification Url
          */
@@ -349,6 +360,15 @@ class ControllerPaymentPagSeguro extends Controller {
             
            if ( empty($this->request->post['pagseguro_url_notification']) )
                $this->data['pagseguro_url_notification'] = $this->_generateNotificationUrl();
+        }
+        
+        /**
+         * Redirect Url
+         */
+        private function _redirectUrl(){
+            
+            if ( empty($this->request->post['pagseguro_forwarding']) )
+               $this->data['pagseguro_forwarding'] = $this->_generationRedirectUrl();
         }
 
         /**
@@ -359,5 +379,13 @@ class ControllerPaymentPagSeguro extends Controller {
             return HTTP_CATALOG."index.php?route=payment/pagseguro_notification";
         }
         
+        /**
+         * Redirect Url
+         * @return url redirect 
+         */
+        private function _generationRedirectUrl(){
+            return HTTP_CATALOG."index.php?route=checkout/success";
+            
+        }
     }
 ?>
