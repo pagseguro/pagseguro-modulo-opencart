@@ -176,7 +176,7 @@ class ModelPaymentPagSeguro extends Model {
          * @param type $order_status_id
          */
         public function updateOrder($id_order, $order_status_id){
-            $this->db->query("UPDATE " . DB_PREFIX."order SET `order_status_id` =".(int)$order_status_id.  " WHERE `order_id` = " . (int)$id_order );
+            $this->db->query("UPDATE " . DB_PREFIX. "order SET `order_status_id` = '".(int)$order_status_id.  "' WHERE `order_id` = '" . (int)$id_order ."'");
         }
         
         /**
