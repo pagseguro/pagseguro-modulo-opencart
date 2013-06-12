@@ -176,7 +176,7 @@ class ModelPaymentPagSeguro extends Model {
          * @param type $order_status_id
          */
         public function updateOrder($id_order, $order_status_id){
-            $this->db->query("UPDATE " . DB_PREFIX. "order SET `order_status_id` = '".(int)$order_status_id.  "' WHERE `order_id` = '" . (int)$id_order ."'");
+            $this->db->query("UPDATE `" .DB_PREFIX. "order` SET `order_status_id` = '".(int)$order_status_id.  "' WHERE `order_id` = '" . (int)$id_order ."'");
         }
         
         /**
@@ -208,7 +208,7 @@ class ModelPaymentPagSeguro extends Model {
             
             $validate = TRUE;
             $query = $this->db->query("SELECT MAX(order_history_id), order_status_id  
-                                            FROM `oc_order_history` WHERE order_id = " .(int)$order_id );
+                                            FROM `" .DB_PREFIX. "order_history` WHERE order_id = " .(int)$order_id );
             
               if( !empty($query->rows) )  {
                    foreach ($query->rows as $result){
