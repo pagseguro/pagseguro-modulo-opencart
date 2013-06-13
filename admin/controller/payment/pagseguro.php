@@ -402,9 +402,9 @@ class ControllerPaymentPagSeguro extends Controller {
         /**
          * Return directory log
          */
-       private function _getDirectoryLog(){
+       private function _getDirectoryLog(){          
              $_dir = str_replace('catalog/', '', DIR_CATALOG);   
-             return ( $this->_isNotNull($this->config->get('pagseguro_directory') ) == TRUE )? $_dir.$this->config->get('pagseguro_directory') : null;
+             return ( $this->_isNotNull($this->request->post['pagseguro_directory'] ) == TRUE )? $_dir.$this->request->post['pagseguro_directory'] : null;
         } 
     }
 ?>
