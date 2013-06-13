@@ -271,8 +271,13 @@ class ControllerPaymentPagSeguro extends Controller {
             try {
                  $this->_urlPagSeguro =  $paymentRequest->register($this->_credential);
             } catch (Exception $exc) {
-               echo $exc->getMessage();exit;
-            }
+                   
+                    if( $this->config->get('pagseguro_log') == 1 ){
+                         PagSeguroConfig::activeLog ($this->_getDirectoryLog());
+                         LogPagSeguro::error($exc->getMessage());
+                    }
+                    die($exc->getMessage());
+               }
           }
           
           /**
@@ -319,5 +324,13 @@ class ControllerPaymentPagSeguro extends Controller {
          
          return false;
      }
+     
+      /**
+         * Return directory log
+         */
+        private function _getDirectoryLog(){
+             $_dir = str_replace('catalog/', '', DIR_APPLICATION); 
+             return ( $this->_isNotNull($this->config->get('pagseguro_directory') ) == TRUE )? $_dir.$this->config->get('pagseguro_directory') : null;
+        } 
   }
 ?>

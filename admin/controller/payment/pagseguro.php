@@ -42,7 +42,6 @@ class ControllerPaymentPagSeguro extends Controller {
             $this->document->setTitle($this->language->get('heading_title'));
             $this->load->model('setting/setting');
             
-            
             if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
 			$this->model_setting_setting->editSetting('pagseguro', $this->request->post);
 			$this->session->data['success'] = $this->language->get('text_success');
@@ -159,7 +158,6 @@ class ControllerPaymentPagSeguro extends Controller {
             
             $this->data['directory']      = $this->language->get('directory');
             $this->data['text_directory'] = $this->language->get('text_directory'); 
-            
         }
         
         /**
@@ -252,7 +250,6 @@ class ControllerPaymentPagSeguro extends Controller {
             $this->_redirectUrl();
             
             return ( empty(  $this->error ) ) ? true : false;
-            
         }
         
         /**
@@ -271,14 +268,12 @@ class ControllerPaymentPagSeguro extends Controller {
              if( empty( $this->request->post['pagseguro_email'] ) )
                 $this->error['email'] = $this->language->get('error_email_required');
                    
-            
             if( !empty( $this->request->post['pagseguro_email'] )  ){
                 $valid = preg_match($this->pattern, $this->request->post['pagseguro_email']);
                 
                     if ( $valid != 1 ){
                         $this->error['email'] = $this->language->get('error_email_invalid');
                     }
-                        
             }
         }
         
@@ -307,7 +302,7 @@ class ControllerPaymentPagSeguro extends Controller {
         
         // setting configurated default log info
         if ($activeLog){
-            $directory = DIR_CATALOG.$this->request->post['pagseguro_directory'];
+            $directory = $this->_getDirectoryLog();
             $this->_verifyLogFile($directory);
             PagSeguroConfig::activeLog($directory);		
         }
@@ -343,6 +338,10 @@ class ControllerPaymentPagSeguro extends Controller {
                 return $value;
         }
         
+        /**
+         * Validate Redirect Url
+         * @return url
+         */
          private function validateRedirectUrl(){
             
             $value = $this->config->get('pagseguro_forwarding');
@@ -385,7 +384,27 @@ class ControllerPaymentPagSeguro extends Controller {
          */
         private function _generationRedirectUrl(){
             return HTTP_CATALOG."index.php?route=checkout/success";
-            
         }
+        
+      /**
+      * Validate if value is not null
+      * @param type $value
+      * @return boolean
+      */
+     private function _isNotNull($value){
+         
+         if( $value != null && $value != "" )
+             return TRUE;
+         
+         return false;
+     }
+        
+        /**
+         * Return directory log
+         */
+       private function _getDirectoryLog(){
+             $_dir = str_replace('catalog/', '', DIR_CATALOG);   
+             return ( $this->_isNotNull($this->config->get('pagseguro_directory') ) == TRUE )? $_dir.$this->config->get('pagseguro_directory') : null;
+        } 
     }
 ?>
