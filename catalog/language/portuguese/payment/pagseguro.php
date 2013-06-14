@@ -19,5 +19,5 @@ limitations under the License.
 
 
 $_['text_title']    = 'PagSeguro';
-
+$_['text_info']     = 'Desculpe, infelizmente ocorreu um erro durante a finalização da compra. Por favor entre em contato com o administrador da loja se o problema persistir.'; 
 ?>
