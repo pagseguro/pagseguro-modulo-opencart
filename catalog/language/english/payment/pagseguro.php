@@ -19,5 +19,6 @@ limitations under the License.
 
 
 $_['text_title']    = 'PagSeguro';
+$_['text_info']     = 'Sorry, unfortunately there was an error during checkout. Please contact the store administrator if the problem persists.';
 
 ?>
