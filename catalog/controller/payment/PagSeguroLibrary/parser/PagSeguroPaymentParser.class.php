@@ -161,6 +161,39 @@ class PagSeguroPaymentParser extends PagSeguroServiceParser {
         if ($payment->getNotificationURL() != null) {
             $data['notificationURL'] = $payment->getNotificationURL();
         }
+        
+         // metadata
+        if(count($payment->getMetaData()->getItems()) > 0){
+            $i = 0;
+            foreach ($payment->getMetaData()->getItems() as $item){
+                if($item instanceof PagSeguroMetaDataItem){
+                    if(!PagSeguroHelper::isEmpty($item->getKey()) && !PagSeguroHelper::isEmpty($item->getValue())){
+                        $i++;
+                        $data['metadataItemKey'.$i] = $item->getKey();
+                        $data['metadataItemValue'.$i] = $item->getValue();
+                        
+                        if(!PagSeguroHelper::isEmpty($item->getGroup())){
+                            $data['metadataItemGroup'.$i] = $item->getGroup();
+                        }
+                    }
+                }
+            }
+        }
+        
+        // parameter
+        if(count($payment->getParameter()->getItems()) > 0){
+            foreach ($payment->getParameter()->getItems() as $item){
+                if($item instanceof PagSeguroParameterItem){
+                    if(!PagSeguroHelper::isEmpty($item->getKey()) && !PagSeguroHelper::isEmpty($item->getValue())){
+                        if(!PagSeguroHelper::isEmpty($item->getGroup())){
+                            $data[$item->getKey().''.$item->getGroup()] = $item->getValue();
+                        }else{
+                            $data[$item->getKey()] = $item->getValue();
+                        }
+                    }
+                }
+            }
+        }
 
         return $data;
     }

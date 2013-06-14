@@ -1,4 +1,8 @@
-<?php if (!defined('PAGSEGURO_LIBRARY')) { die('No direct script access allowed'); }
+<?php
+
+if (!defined('PAGSEGURO_LIBRARY')) {
+    die('No direct script access allowed');
+}
 /*
  * ***********************************************************************
   Copyright [2011] [PagSeguro Internet Ltda.]
@@ -88,6 +92,21 @@ class PagSeguroPaymentRequest {
      */
     private $notificationURL;
 
+    /**
+     * Extra parameters that user can add to a PagSeguro checkout request
+     * 
+     * Optional. 
+     * @var type 
+     */
+    private $metadata;
+    
+    /**
+     * Extra parameters that user can add to a PagSeguro checkout request
+     * 
+     * Optional
+     * @var type 
+     */
+    private $parameter;
     /**
      * @return the sender
      *
@@ -454,6 +473,81 @@ class PagSeguroPaymentRequest {
      */
     public function setNotificationURL($notificationURL) {
         $this->notificationURL = $notificationURL;
+    }
+
+    /**
+     * Sets metadata for PagSeguro checkout requests
+     * 
+     * @param type $metaData
+     */
+    public function setMetaData($metaData) {
+        $this->metadata = $metaData;
+    }
+
+    /**
+     * Gets metadata for PagSeguro checkout requests
+     * 
+     * @return type $metaData
+     */
+    public function getMetaData() {
+
+        if ($this->metadata == null) {
+            $this->metadata = new PagSeguroMetaData();
+        }
+        return $this->metadata;
+    }
+    
+    /**
+     * add a parameter for PagSeguro metadata checkout request 
+     * 
+     * @param type $itemKey - PagSeguroMetaDataItem key
+     * @param type $itemValue - PagSeguroMetaDataItem value
+     * @param type $itemGroup - PagSeguroMetaDataItem group
+     */
+    public function addMetaData($itemKey, $itemValue, $itemGroup = NULL){
+        $this->getMetaData()->addItem(new PagSeguroMetaDataItem($itemKey, $itemValue, $itemGroup));
+    }
+    
+    /**
+     * Sets parameter for PagSeguro checkout requests
+     * 
+     * @param type $parameter
+     */
+    public function setParameter($parameter){
+        $this->parameter = $parameter;
+    }
+    
+    /**
+     * Gets parameter for PagSeguro checkout requests
+     * 
+     * @return type
+     */
+    public function getParameter(){
+        if($this->parameter == NULL){
+            $this->parameter = new PagSeguroParameter();
+        }
+        return $this->parameter;
+    }
+
+    /**
+     * add a parameter for PagSeguro checkout request 
+     * 
+     * @param type $parameterName - PagSeguroParameterItem key
+     * @param type $parameterValue - PagSeguroParameterItem value
+     */
+    public function addParameter($parameterName, $parameterValue) {
+        $this->getParameter()->addItem(new PagSeguroParameterItem($parameterName,$parameterValue));
+    }
+
+    /**
+     * add a parameter for PagSeguro checkout request
+     * 
+     * @param type $parameterName - PagSeguroParameterItem key
+     * @param type $parameterValue - PagSeguroParameterItem value
+     * @param type $parameterIndex - PagSeguroParameterItem group
+     */
+    public function addIndexedParameter($parameterName, $parameterValue, $parameterIndex) {
+        $this->getParameter()->addItem(new PagSeguroParameterItem($parameterName,$parameterValue,$parameterIndex));
     }
 
     /**

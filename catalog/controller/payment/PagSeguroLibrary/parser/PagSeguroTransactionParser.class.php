@@ -70,9 +70,6 @@ class PagSeguroTransactionParser extends PagSeguroServiceParser {
         // <transaction>
         $data = $parser->getResult('transaction');
 
-        PagSeguroHelper::print_rr($data);
-        exit();
-
         $transaction = new PagSeguroTransaction();
 
         // <transaction> <lastEventDate>

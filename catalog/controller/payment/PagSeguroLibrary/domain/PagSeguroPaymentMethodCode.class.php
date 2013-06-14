@@ -100,6 +100,10 @@ class PagSeguroPaymentMethodCode {
          */
         'AVISTA_CREDIT_CARD' => 118,
         /**
+         * GranCard
+         */
+        'GRANCARD_CREDIT_CARD' => 119,
+        /**
          * Bradesco - boleto -  is a form of invoicing in Brazil
          */
         'BRADESCO_BOLETO' => 201,

@@ -27,7 +27,7 @@ class PagSeguroDocuments {
      * @var array 
      */
     private static $availableDocumentList = array(
-        'CPF' => 'Cadastro de Pessoa Fisica' );
+        'CPF' => 'Cadastro de Pessoa Física' );
     
     /**
      * Get available document list for Sender use in PagSeguro transactions

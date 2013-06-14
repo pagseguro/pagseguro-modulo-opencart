@@ -26,7 +26,7 @@ define('PAGSEGURO_LIBRARY', TRUE);
 require_once "loader".DIRECTORY_SEPARATOR."PagSeguroAutoLoader.class.php";
 class PagSeguroLibrary {
 	
-	const VERSION = "2.1.6";
+	const VERSION = "2.1.7";
 	public static $resources;
 	public static $config;
 	public static $log;
