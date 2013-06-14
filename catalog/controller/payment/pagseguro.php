@@ -85,6 +85,7 @@ class ControllerPaymentPagSeguro extends Controller {
          * Load model and language
          */
         private function _load(){
+		    PagSeguroConfig::activeLog ($this->_getDirectoryLog());
             $this->language->load('payment/pagseguro');
             $this->load->model('checkout/order');
             $this->load->model('setting/setting');
@@ -271,12 +272,7 @@ class ControllerPaymentPagSeguro extends Controller {
             try {
                  $this->_urlPagSeguro =  $paymentRequest->register($this->_credential);
             } catch (Exception $exc) {
-                   
-                    if( $this->config->get('pagseguro_log') == 1 ){
-                         PagSeguroConfig::activeLog ($this->_getDirectoryLog());
-                         LogPagSeguro::error($exc->getMessage());
-                    }
-                    die($exc->getMessage());
+                 die($exc->getMessage());
                }
           }
           
