@@ -34,6 +34,12 @@ class ControllerPaymentPagSeguro extends Controller {
      * @var regex
      */
     private $pattern = '/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$/';
+    
+    /**
+     * Array of extensions
+     * @var string
+     */
+    private $array_extension = array (".txt", ".log");
         
         public function index(){
             
@@ -403,8 +409,40 @@ class ControllerPaymentPagSeguro extends Controller {
          * Return directory log
          */
        private function _getDirectoryLog(){          
-             $_dir = str_replace('catalog/', '', DIR_CATALOG);   
-             return ( $this->_isNotNull($this->request->post['pagseguro_directory'] ) == TRUE )? $_dir.$this->request->post['pagseguro_directory'] : null;
+             $_dir = str_replace('catalog/', '', DIR_CATALOG);
+             $directory = NULL;
+             $validate_extension = FALSE;
+             
+                if ( $this->_isNotNull($this->request->post['pagseguro_directory'] ) ){
+                        $directory = $this->request->post['pagseguro_directory'];
+                    
+                    foreach ($this->array_extension as $extension)  {    
+                         if (stripos($directory, $extension) )
+                               $validate_extension = TRUE; 
+                   }
+                }
+             
+                if ( $directory != NULL && $validate_extension == FALSE  )
+                       $directory = $this->_createFileDirectory($directory);
+                
+             return ( $directory != NULL )? $_dir.$directory : null;
         } 
+        
+     /**
+      * Create file
+      * @param type $directory
+      * @return string
+      */   
+     private function _createFileDirectory($directory){
+            
+            $directory = explode('/', $directory);
+            $path      = '';
+               
+            foreach ($directory as $char){
+               $path = $path.$char.DIRECTORY_SEPARATOR; 
+            }
+            
+           return $path.'PagSeguro.log';
+        }
     }
 ?>

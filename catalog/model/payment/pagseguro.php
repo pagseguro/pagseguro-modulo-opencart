@@ -65,7 +65,7 @@ class ModelPaymentPagSeguro extends Model {
                 'sort_order' => $this->config->get('pagseguro_sort_order')
             );
             
-    return $method_data;
+             return $method_data;
         }
         
         /**
@@ -205,21 +205,84 @@ class ModelPaymentPagSeguro extends Model {
          * @return boolean
          */
         private function _validateOrderHistory($order_id, $id_order_status){
-            
+         
             $validate = TRUE;
-            $query = $this->db->query("SELECT MAX(order_history_id), order_status_id  
+            $query = $this->db->query("SELECT MAX(order_history_id) 
                                             FROM `" .DB_PREFIX. "order_history` WHERE order_id = " .(int)$order_id );
+            
+            
             
               if( !empty($query->rows) )  {
                    foreach ($query->rows as $result){
-                     $order_status = (int)$result['order_status_id'];
-                            
-                        if( $id_order_status == $order_status   )
+                       
+                     $id_history = (int) $result["MAX(order_history_id)"];
+                     $array_history =  $this->_getOrderHistoryById($id_history);
+                     
+                     $name_current  = $this->_getNameOrderStatusById($array_history['order_status_id']);
+                     $name_previous = $this->_getNameOrderStatusById($id_order_status); 
+                        
+                             if ( !empty($name_current) && !empty($name_previous) ){
+                                 $name_current  = $this->removeAccent($name_current);
+                                 $name_previous = $this->removeAccent($name_previous);
+                                 
+                                        if( $name_current == $name_previous )
+                                            $validate = FALSE;
+                             }
+                     
+                        if( $id_order_status == $array_history['order_status_id']   )
                                 $validate = FALSE;
                 }
              }
-             
              return $validate;
+        }
+        
+        /**
+         * Return objetc order_history by id
+         * @param type $id_history
+         * @return array order_history
+         */
+        private function _getOrderHistoryById($id_history){
+            
+            $array_history = array();
+            $query = $this->db->query("SELECT * 
+                                          FROM `" .DB_PREFIX. "order_history` WHERE order_history_id = " .(int)$id_history );
+            
+             if( !empty($query->rows) )  {
+                   foreach ($query->rows as $result){
+                       
+                       $array_history['order_status_id'] = (int)$result['order_status_id'];
+                   }
+             }
+             return $array_history;
+        }
+        
+        /**
+         * Return name order Status by id
+         * @param type $id_order_status
+         * @return string
+         */
+        private function _getNameOrderStatusById($id_order_status){
+            
+             $name_status = NULL;
+             $query = $this->db->query("SELECT `name` 
+                                            FROM " . DB_PREFIX."order_status
+                                            WHERE   `order_status_id` = '" . (int)$id_order_status . "'");
+             
+              if( !empty($query->rows) )  {
+                   foreach ($query->rows as $result){
+                     $name_status = $result['name'];
+                   }
+              }
+           return $name_status;
+        }
+        
+        /**
+         * Remove accent 
+         * @param type $value
+         * @return string
+         */
+        public  function removeAccent($value){
+              return strtoupper( strtr($value, "áàãâéêíóôõúüçÁÀÃÂÉÊÍÓÔÕÚÜÇ", "aaaaeeiooouucAAAAEEIOOOUUC") );
         }
         
         /**
