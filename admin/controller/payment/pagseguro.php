@@ -21,7 +21,8 @@
  * Controller Payment PagSeguro.
  * Class responsible for the configuration data of the user of PagSeguro (adm)
  */
-class ControllerPaymentPagSeguro extends Controller {
+class ControllerPaymentPagSeguro extends Controller
+{
 
 	/**
 	 * Array Error
@@ -41,7 +42,8 @@ class ControllerPaymentPagSeguro extends Controller {
 	 */
 	private $array_extension = array(".txt", ".log");
 
-	public function index() {
+	public function index()
+	{
 
 		$this->_addPagSeguroLibrary();
 		$this->language->load('payment/pagseguro');
@@ -77,14 +79,16 @@ class ControllerPaymentPagSeguro extends Controller {
 	/**
 	 * Add PagSeguro Libary
 	 */
-	private function _addPagSeguroLibrary() {
+	private function _addPagSeguroLibrary()
+	{
 		include_once DIR_CATALOG . 'controller/payment/PagSeguroLibrary/PagSeguroLibrary.php';
 	}
 
 	/**
 	 * Create Input
 	 */
-	private function _createInput() {
+	private function _createInput()
+	{
 
 		if (isset($this->request->post['pagseguro_status']))
 			$this->data['pagseguro_status'] = $this->request->post['pagseguro_status'];
@@ -135,7 +139,8 @@ class ControllerPaymentPagSeguro extends Controller {
 	/**
 	 * Create Text
 	 */
-	private function _createText() {
+	private function _createText()
+	{
 
 		$this->data['enable_module'] = $this->language->get('enable_module');
 		$this->data['text_module'] = $this->language->get('text_module');
@@ -168,7 +173,8 @@ class ControllerPaymentPagSeguro extends Controller {
 	/**
 	 * Create Radio Button
 	 */
-	private function _createRadio() {
+	private function _createRadio()
+	{
 		$this->data['text_yes'] = $this->language->get('text_yes');
 		$this->data['text_no'] = $this->language->get('text_no');
 
@@ -179,7 +185,8 @@ class ControllerPaymentPagSeguro extends Controller {
 	/**
 	 * Create Buttons
 	 */
-	private function _createButtons() {
+	private function _createButtons()
+	{
 		$this->data['button_save'] = $this->language->get('button_save');
 		$this->data['button_cancel'] = $this->language->get('button_cancel');
 	}
@@ -187,33 +194,35 @@ class ControllerPaymentPagSeguro extends Controller {
 	/**
 	 * Create Breadcrumbs to view.
 	 */
-	private function _createBreadcrumbs() {
+	private function _createBreadcrumbs()
+	{
 
 		$this->data['breadcrumbs'] = array();
 
 		$this->data['breadcrumbs'][] = array(
-			'text' => $this->language->get('text_home'),
-			'href' => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
-			'separator' => false
+			'text'		 => $this->language->get('text_home'),
+			'href'		 => $this->url->link('common/home', 'token=' . $this->session->data['token'], 'SSL'),
+			'separator'	 => false
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text' => $this->language->get('text_payment'),
-			'href' => $this->url->link('extension/payment', 'token=' . $this->session->data['token'], 'SSL'),
-			'separator' => ' :: '
+			'text'		 => $this->language->get('text_payment'),
+			'href'		 => $this->url->link('extension/payment', 'token=' . $this->session->data['token'], 'SSL'),
+			'separator'	 => ' :: '
 		);
 
 		$this->data['breadcrumbs'][] = array(
-			'text' => $this->language->get('heading_title'),
-			'href' => $this->url->link('payment/pagseguro', 'token=' . $this->session->data['token'], 'SSL'),
-			'separator' => ' :: '
+			'text'		 => $this->language->get('heading_title'),
+			'href'		 => $this->url->link('payment/pagseguro', 'token=' . $this->session->data['token'], 'SSL'),
+			'separator'	 => ' :: '
 		);
 	}
 
 	/**
 	 * Create Link's
 	 */
-	private function _createLink() {
+	private function _createLink()
+	{
 		$this->data['action'] = $this->url->link('payment/pagseguro', 'token=' . $this->session->data['token'], 'SSL');
 		$this->data['cancel'] = $this->url->link('extension/payment', 'token=' . $this->session->data['token'], 'SSL');
 	}
@@ -221,7 +230,8 @@ class ControllerPaymentPagSeguro extends Controller {
 	/**
 	 * Create Error
 	 */
-	private function _createError() {
+	private function _createError()
+	{
 
 		if (isset($this->error['warning'])) {
 			$this->data['error_warning'] = $this->error['warning'];
@@ -246,7 +256,8 @@ class ControllerPaymentPagSeguro extends Controller {
 	 * Validate
 	 * @return boolean
 	 */
-	protected function validate() {
+	protected function validate()
+	{
 
 		$this->_permission();
 		$this->_validateEmail();
@@ -260,7 +271,8 @@ class ControllerPaymentPagSeguro extends Controller {
 	/**
 	 * Validate Permisson
 	 */
-	private function _permission() {
+	private function _permission()
+	{
 		if (!$this->user->hasPermission('modify', 'payment/pp_standard'))
 			$this->error['warning'] = $this->language->get('error_permission');
 	}
@@ -268,7 +280,8 @@ class ControllerPaymentPagSeguro extends Controller {
 	/**
 	 * Validate E-mail
 	 */
-	private function _validateEmail() {
+	private function _validateEmail()
+	{
 
 		if (empty($this->request->post['pagseguro_email']))
 			$this->error['email'] = $this->language->get('error_email_required');
@@ -285,7 +298,8 @@ class ControllerPaymentPagSeguro extends Controller {
 	/**
 	 * Validate Token
 	 */
-	private function _validateToken() {
+	private function _validateToken()
+	{
 
 		if (empty($this->request->post['pagseguro_token']))
 			$this->error['token'] = $this->language->get('error_token_required');
@@ -297,7 +311,8 @@ class ControllerPaymentPagSeguro extends Controller {
 	/**
 	 * Retrieve PagSeguro data configuration from database
 	 */
-	private function _setPagSeguroConfiguration() {
+	private function _setPagSeguroConfiguration()
+	{
 		$charset = ($this->request->post['pagseguro_charset'] == 1) ? $this->language->get('iso') : $this->language->get('utf');
 
 		// setting configurated default charset
@@ -318,12 +333,16 @@ class ControllerPaymentPagSeguro extends Controller {
 	 * Case log file not exists, try create
 	 * else, log will be created as name as PagSeguro.log as name into PagseguroLibrary folder into module
 	 */
-	private function _verifyLogFile($file) {
+	private function _verifyLogFile($file)
+	{
 
-		try {
+		try
+		{
 			$f = fopen($file, "a");
 			fclose($f);
-		} catch (Exception $e) {
+		}
+		catch (Exception $e)
+		{
 			die($e);
 		}
 	}
@@ -332,7 +351,8 @@ class ControllerPaymentPagSeguro extends Controller {
 	 * Validate Notification Url
 	 * @return url
 	 */
-	private function validateNotificationUrl() {
+	private function validateNotificationUrl()
+	{
 
 		$value = $this->config->get('pagseguro_url_notification');
 
@@ -346,7 +366,8 @@ class ControllerPaymentPagSeguro extends Controller {
 	 * Validate Redirect Url
 	 * @return url
 	 */
-	private function validateRedirectUrl() {
+	private function validateRedirectUrl()
+	{
 
 		$value = $this->config->get('pagseguro_forwarding');
 
@@ -359,7 +380,8 @@ class ControllerPaymentPagSeguro extends Controller {
 	/**
 	 * Notification Url
 	 */
-	private function _notificationUrl() {
+	private function _notificationUrl()
+	{
 
 		if (empty($this->request->post['pagseguro_url_notification']))
 			$this->data['pagseguro_url_notification'] = $this->_generateNotificationUrl();
@@ -368,7 +390,8 @@ class ControllerPaymentPagSeguro extends Controller {
 	/**
 	 * Redirect Url
 	 */
-	private function _redirectUrl() {
+	private function _redirectUrl()
+	{
 
 		if (empty($this->request->post['pagseguro_forwarding']))
 			$this->data['pagseguro_forwarding'] = $this->_generationRedirectUrl();
@@ -378,7 +401,8 @@ class ControllerPaymentPagSeguro extends Controller {
 	 * Url Notification
 	 * @return url notification
 	 */
-	private function _generateNotificationUrl() {
+	private function _generateNotificationUrl()
+	{
 		return HTTP_CATALOG . "index.php?route=payment/pagseguro_notification";
 	}
 
@@ -386,7 +410,8 @@ class ControllerPaymentPagSeguro extends Controller {
 	 * Redirect Url
 	 * @return url redirect
 	 */
-	private function _generationRedirectUrl() {
+	private function _generationRedirectUrl()
+	{
 		return HTTP_CATALOG . "index.php?route=checkout/success";
 	}
 
@@ -395,7 +420,8 @@ class ControllerPaymentPagSeguro extends Controller {
 	 * @param type $value
 	 * @return boolean
 	 */
-	private function _isNotNull($value) {
+	private function _isNotNull($value)
+	{
 
 		if ($value != null && $value != "")
 			return TRUE;
@@ -406,7 +432,8 @@ class ControllerPaymentPagSeguro extends Controller {
 	/**
 	 * Return directory log
 	 */
-	private function _getDirectoryLog() {
+	private function _getDirectoryLog()
+	{
 		$_dir = str_replace('catalog/', '', DIR_CATALOG);
 		$directory = NULL;
 		$validate_extension = FALSE;
@@ -431,7 +458,8 @@ class ControllerPaymentPagSeguro extends Controller {
 	 * @param type $directory
 	 * @return string
 	 */
-	private function _createFileDirectory($directory) {
+	private function _createFileDirectory($directory)
+	{
 
 		$directory = explode('/', $directory);
 		$path = '';

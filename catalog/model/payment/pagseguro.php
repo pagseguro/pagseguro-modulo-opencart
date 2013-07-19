@@ -22,7 +22,8 @@
  * Model Payment PagSeguro.
  * Model responsible for the searches, changes and updates to the tables of PagSeguro.
  */
-class ModelPaymentPagSeguro extends Model {
+class ModelPaymentPagSeguro extends Model
+{
 
 	private $_languages = array();
 
@@ -31,8 +32,8 @@ class ModelPaymentPagSeguro extends Model {
 	 * @var array
 	 */
 	private static $array_languages = array(
-		"English" => "en",
-		"Portugues" => "br"
+		"English"	 => "en",
+		"Portugues"	 => "br"
 	);
 
 	/**
@@ -55,13 +56,14 @@ class ModelPaymentPagSeguro extends Model {
 	 * @param type $total
 	 * @return string
 	 */
-	public function getMethod($address, $total) {
+	public function getMethod($address, $total)
+	{
 
 		$this->language->load('payment/pagseguro');
 
 		$method_data = array(
-			'code' => 'pagseguro',
-			'title' => $this->language->get('text_title'),
+			'code'		 => 'pagseguro',
+			'title'		 => $this->language->get('text_title'),
 			'sort_order' => $this->config->get('pagseguro_sort_order')
 		);
 
@@ -71,7 +73,8 @@ class ModelPaymentPagSeguro extends Model {
 	/**
 	 * Method responsible for saving the status PagSeguro according to the languages ​​active in the system, by default saves english
 	 */
-	public function savePagSeguroOrderStatus() {
+	public function savePagSeguroOrderStatus()
+	{
 		$this->_languages = $this->_getCodeLanguages();
 
 		if (in_array(self::$array_languages['Portugues'], $this->_languages)) {
@@ -87,7 +90,8 @@ class ModelPaymentPagSeguro extends Model {
 	 * Retrieves the id and code of languages ​​active in the system
 	 * @return array
 	 */
-	private function _getCodeLanguages() {
+	private function _getCodeLanguages()
+	{
 		$data = array();
 		$query = $this->db->query(' SELECT language_id, code
                                             FROM ' . DB_PREFIX . 'language
@@ -105,7 +109,8 @@ class ModelPaymentPagSeguro extends Model {
 	 * @param type $language_code
 	 * @return int
 	 */
-	public function _getIdLanguageByCode($language_code = 'en') {
+	public function _getIdLanguageByCode($language_code = 'en')
+	{
 		$id_language = null;
 		$query = $this->db->query(" SELECT language_id
                                             FROM " . DB_PREFIX . "language
@@ -123,7 +128,8 @@ class ModelPaymentPagSeguro extends Model {
 	 * @param type $id_language
 	 * @return string
 	 */
-	public function getCodeLanguageById($id_language) {
+	public function getCodeLanguageById($id_language)
+	{
 		$code_language = null;
 		$query = $this->db->query(" SELECT code
                                             FROM " . DB_PREFIX . "language
@@ -141,7 +147,8 @@ class ModelPaymentPagSeguro extends Model {
 	 * @param type $code_language
 	 * @param type $id_language
 	 */
-	private function _saveOrderStatus($code_language, $id_language) {
+	private function _saveOrderStatus($code_language, $id_language)
+	{
 		foreach (self::$array_order_status as $key => $value) {
 			if ($this->getOrderStatusByName($value[$code_language], $id_language) == NULL)
 				$this->db->query("INSERT INTO " . DB_PREFIX . "order_status SET `language_id` = '" . (int) $id_language . "', `name` = '" . $this->db->escape($value[$code_language]) . "'");
@@ -154,7 +161,8 @@ class ModelPaymentPagSeguro extends Model {
 	 * @param type $id_language
 	 * @return int
 	 */
-	public function getOrderStatusByName($name_status, $id_language) {
+	public function getOrderStatusByName($name_status, $id_language)
+	{
 
 		$order_id = NULL;
 		$query = $this->db->query("SELECT order_status_id
@@ -175,7 +183,8 @@ class ModelPaymentPagSeguro extends Model {
 	 * @param type $id_order
 	 * @param type $order_status_id
 	 */
-	public function updateOrder($id_order, $order_status_id) {
+	public function updateOrder($id_order, $order_status_id)
+	{
 		$this->db->query("UPDATE `" . DB_PREFIX . "order` SET `order_status_id` = '" . (int) $order_status_id . "' WHERE `order_id` = '" . (int) $id_order . "'");
 	}
 
@@ -184,7 +193,8 @@ class ModelPaymentPagSeguro extends Model {
 	 * @param type $order_id
 	 * @param type $id_order_status
 	 */
-	public function saveOrderHistory($order_id, $id_order_status) {
+	public function saveOrderHistory($order_id, $id_order_status)
+	{
 
 		$datetime = new DateTime();
 		if ($this->_validateOrderHistory($order_id, $id_order_status) == TRUE) {
@@ -203,7 +213,8 @@ class ModelPaymentPagSeguro extends Model {
 	 * @param type $id_order_status
 	 * @return boolean
 	 */
-	private function _validateOrderHistory($order_id, $id_order_status) {
+	private function _validateOrderHistory($order_id, $id_order_status)
+	{
 
 		$validate = TRUE;
 		$query = $this->db->query("SELECT MAX(order_history_id)
@@ -238,7 +249,8 @@ class ModelPaymentPagSeguro extends Model {
 	 * @param type $id_history
 	 * @return array order_history
 	 */
-	private function _getOrderHistoryById($id_history) {
+	private function _getOrderHistoryById($id_history)
+	{
 
 		$array_history = array();
 		$query = $this->db->query("SELECT *
@@ -258,7 +270,8 @@ class ModelPaymentPagSeguro extends Model {
 	 * @param type $id_order_status
 	 * @return string
 	 */
-	private function _getNameOrderStatusById($id_order_status) {
+	private function _getNameOrderStatusById($id_order_status)
+	{
 
 		$name_status = NULL;
 		$query = $this->db->query("SELECT `name`
@@ -278,7 +291,8 @@ class ModelPaymentPagSeguro extends Model {
 	 * @param type $value
 	 * @return string
 	 */
-	public function removeAccent($value) {
+	public function removeAccent($value)
+	{
 		return strtoupper(strtr($value, "áàãâéêíóôõúüçÁÀÃÂÉÊÍÓÔÕÚÜÇ", "aaaaeeiooouucAAAAEEIOOOUUC"));
 	}
 
@@ -286,7 +300,8 @@ class ModelPaymentPagSeguro extends Model {
 	 * Return array of status
 	 * @return array
 	 */
-	public function getOrderStatus() {
+	public function getOrderStatus()
+	{
 		return self::$array_order_status;
 	}
 }

@@ -21,14 +21,16 @@
 /**
  * Class Controller Payment PagSeguro Redirect
  */
-class ControllerPaymentPagSeguroRedirect extends Controller {
+class ControllerPaymentPagSeguroRedirect extends Controller
+{
 
 	private $_urlPagSeguro;
 
 	/**
 	 * The first method to be called by the redirect PagSeguro treatment.
 	 */
-	public function index() {
+	public function index()
+	{
 
 		if ($_POST)
 			$this->_redirect();
@@ -37,7 +39,8 @@ class ControllerPaymentPagSeguroRedirect extends Controller {
 	/**
 	 * Redirect Store for PagSeguro and Clean Cart
 	 */
-	private function _redirect() {
+	private function _redirect()
+	{
 
 		$this->_urlPagSeguro = $this->request->post['url_ps'];
 

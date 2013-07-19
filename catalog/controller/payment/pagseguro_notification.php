@@ -22,7 +22,8 @@
  * Class Controller Payment PagSeguro Notification
  * Class responsible for receiving and handling of notifications sent by PagSeguro.
  */
-class ControllerPaymentPagSeguroNotification extends Controller {
+class ControllerPaymentPagSeguroNotification extends Controller
+{
 
 	/**
 	 * $_POST['notificationType']
@@ -75,7 +76,8 @@ class ControllerPaymentPagSeguroNotification extends Controller {
 	/**
 	 * The first method to be called by the notification PagSeguro treatment.
 	 */
-	public function index() {
+	public function index()
+	{
 
 		$this->_load();
 		$this->_addPagSeguroLibrary();
@@ -94,21 +96,24 @@ class ControllerPaymentPagSeguroNotification extends Controller {
 	/**
 	 * Load Model PagSeguro.
 	 */
-	private function _load() {
+	private function _load()
+	{
 		$this->load->model('payment/pagseguro');
 	}
 
 	/**
 	 * Add Libary PagSeguro.
 	 */
-	private function _addPagSeguroLibrary() {
+	private function _addPagSeguroLibrary()
+	{
 		include_once DIR_APPLICATION . 'controller/payment/PagSeguroLibrary/PagSeguroLibrary.php';
 	}
 
 	/**
 	 * Verifies that post is not empty.
 	 */
-	private function _validatePost() {
+	private function _validatePost()
+	{
 		$this->notification_type = (isset($this->request->post['notificationType']) && trim($this->request->post['notificationType']) != "") ? trim($this->request->post['notificationType']) : null;
 		$this->notification_code = (isset($this->request->post['notificationCode']) && trim($this->request->post['notificationCode']) != "") ? trim($this->request->post['notificationCode']) : null;
 	}
@@ -116,28 +121,32 @@ class ControllerPaymentPagSeguroNotification extends Controller {
 	/**
 	 * Retrieves list of status PagSeguro
 	 */
-	private function _createArrayOrderStatus() {
+	private function _createArrayOrderStatus()
+	{
 		$this->array_order_status = $this->model_payment_pagseguro->getOrderStatus();
 	}
 
 	/**
 	 * Create Credentials
 	 */
-	private function _createCredentials() {
+	private function _createCredentials()
+	{
 		$this->obj_credentials = new PagSeguroAccountCredentials($this->config->get('pagseguro_email'), $this->config->get('pagseguro_token'));
 	}
 
 	/**
 	 * Retrieves the language code active in the system.
 	 */
-	private function _codeLanguage() {
+	private function _codeLanguage()
+	{
 		$this->code_language = $this->session->data['language'];
 	}
 
 	/**
 	 * Create Notification type
 	 */
-	private function _createNotificationType() {
+	private function _createNotificationType()
+	{
 		$this->obj_notification_type = new PagSeguroNotificationType();
 		$this->obj_notification_type->setByType("TRANSACTION");
 	}
@@ -145,7 +154,8 @@ class ControllerPaymentPagSeguroNotification extends Controller {
 	/**
 	 * Create Transaction
 	 */
-	private function _createTransaction() {
+	private function _createTransaction()
+	{
 		$this->obj_transaction = PagSeguroNotificationService::checkTransaction($this->obj_credentials, $this->notification_code);
 		$this->reference = $this->obj_transaction->getReference();
 	}
@@ -153,7 +163,8 @@ class ControllerPaymentPagSeguroNotification extends Controller {
 	/**
 	 * Updates the transaction status
 	 */
-	private function _updateCms() {
+	private function _updateCms()
+	{
 		$value_array = $this->array_order_status[$this->obj_transaction->getStatus()->getValue()];
 		$id_language = $this->_getIdLanguage();
 		$id_order_status = $this->model_payment_pagseguro->getOrderStatusByName($value_array[$this->code_language], $id_language);
@@ -164,7 +175,8 @@ class ControllerPaymentPagSeguroNotification extends Controller {
 	 * Returns the id of the language active in the system.
 	 * @return int
 	 */
-	private function _getIdLanguage() {
+	private function _getIdLanguage()
+	{
 		return $this->model_payment_pagseguro->_getIdLanguageByCode($this->code_language);
 	}
 
@@ -172,7 +184,8 @@ class ControllerPaymentPagSeguroNotification extends Controller {
 	 * Update table order and order_history
 	 * @param type $id_order_status
 	 */
-	private function _updateOrder($id_order_status) {
+	private function _updateOrder($id_order_status)
+	{
 		$this->model_payment_pagseguro->updateOrder($this->reference, $id_order_status);
 		$this->model_payment_pagseguro->saveOrderHistory($this->reference, $id_order_status);
 	}

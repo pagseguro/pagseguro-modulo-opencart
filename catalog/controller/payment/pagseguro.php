@@ -23,7 +23,8 @@
  * Class responsible for payment PagSeguro.
  */
 include_once 'PagSeguroLibrary/PagSeguroLibrary.php';
-class ControllerPaymentPagSeguro extends Controller {
+class ControllerPaymentPagSeguro extends Controller
+{
 
 	/**
 	 *
@@ -58,7 +59,8 @@ class ControllerPaymentPagSeguro extends Controller {
 	/**
 	 * The first method to be called by the payment PagSeguro treatment.
 	 */
-	protected function index() {
+	protected function index()
+	{
 
 		$this->_load();
 		$this->_retrievePagSeguroModuleVersion();
@@ -84,7 +86,8 @@ class ControllerPaymentPagSeguro extends Controller {
 	/**
 	 * Load model and language
 	 */
-	private function _load() {
+	private function _load()
+	{
 		PagSeguroConfig::activeLog($this->_getDirectoryLog());
 		$this->language->load('payment/pagseguro');
 		$this->load->model('checkout/order');
@@ -96,14 +99,16 @@ class ControllerPaymentPagSeguro extends Controller {
 	/**
 	 * Retrieve PagSeguro osCommerce module version
 	 */
-	private function _retrievePagSeguroModuleVersion() {
+	private function _retrievePagSeguroModuleVersion()
+	{
 		PagSeguroLibrary::setModuleVersion('opencart' . ':' . $this->api_version);
 	}
 
 	/**
 	 * Set version CMS
 	 */
-	private function _setCmsVersion() {
+	private function _setCmsVersion()
+	{
 		PagSeguroLibrary::setCMSVersion('opencart' . ':' . VERSION);
 	}
 
@@ -111,7 +116,8 @@ class ControllerPaymentPagSeguro extends Controller {
 	 * Generate PagSeguro Payment Request
 	 * @return \PagSeguroPaymentRequest
 	 */
-	private function _generatePagSeguroPaymentRequestObject() {
+	private function _generatePagSeguroPaymentRequestObject()
+	{
 		$paymentRequest = new PagSeguroPaymentRequest();
 		$paymentRequest->setCurrency(PagSeguroCurrencies::getIsoCodeByName("REAL"));
 		$paymentRequest->setExtraAmount($this->_generateExtraAmount());
@@ -127,7 +133,8 @@ class ControllerPaymentPagSeguro extends Controller {
 	 * Generate Extra Amount.
 	 * @return double
 	 */
-	private function _generateExtraAmount() {
+	private function _generateExtraAmount()
+	{
 		$_extra = 0;
 		$_shipping_cost = $this->_generatePagSeguroShippingCost();
 		$_sub_total = $this->cart->getSubTotal();
@@ -147,7 +154,8 @@ class ControllerPaymentPagSeguro extends Controller {
 	 * PagSeguro Redirect url
 	 * @return redirect url
 	 */
-	private function _getPagSeguroRedirectUrl() {
+	private function _getPagSeguroRedirectUrl()
+	{
 
 		if ($this->_isNotNull($this->config->get('pagseguro_forwarding')))
 			return $this->config->get('pagseguro_forwarding');
@@ -160,7 +168,8 @@ class ControllerPaymentPagSeguro extends Controller {
 	 * PagSeguro notification url
 	 * @return notification url
 	 */
-	private function _getPagSeguroNotificationURL() {
+	private function _getPagSeguroNotificationURL()
+	{
 
 		if ($this->_isNotNull($this->config->get('pagseguro_url_notification')))
 			return $this->config->get('pagseguro_url_notification');
@@ -172,7 +181,8 @@ class ControllerPaymentPagSeguro extends Controller {
 	 * Generate PagSeguro Products
 	 * @return array
 	 */
-	private function _generatePagSeguroProductsData() {
+	private function _generatePagSeguroProductsData()
+	{
 
 		$pagSeguroItens = array();
 
@@ -195,7 +205,8 @@ class ControllerPaymentPagSeguro extends Controller {
 	 * Generate PagSeguro Sender Data
 	 * @return \PagSeguroSender
 	 */
-	private function _generatepagSeguroSenderDataObject() {
+	private function _generatepagSeguroSenderDataObject()
+	{
 
 		$sender = new PagSeguroSender();
 		$sender->setEmail(str_replace(' ', '', $this->_order_info['email']));
@@ -207,7 +218,8 @@ class ControllerPaymentPagSeguro extends Controller {
 	 * Generate PagSeguro Shipping Data
 	 * @return \PagSeguroShipping
 	 */
-	private function _generatePagSeguroShippingDataObject() {
+	private function _generatePagSeguroShippingDataObject()
+	{
 
 		$shipping = new PagSeguroShipping();
 		$shipping->setAddress($this->_generatePagSeguroShippingAddressDataObject());
@@ -220,7 +232,8 @@ class ControllerPaymentPagSeguro extends Controller {
 	 * Generate PagSeguro Shipping Address
 	 * @return \PagSeguroAddress
 	 */
-	private function _generatePagSeguroShippingAddressDataObject() {
+	private function _generatePagSeguroShippingAddressDataObject()
+	{
 
 		$address = new PagSeguroAddress();
 		$address->setCity(html_entity_decode($this->_order_info['payment_city']));
@@ -235,7 +248,8 @@ class ControllerPaymentPagSeguro extends Controller {
 	 * Generate PagSeguro Shipping Type
 	 * @return \PagSeguroShippingTyp
 	 */
-	private function _generatePagSeguroShippingTypeObject() {
+	private function _generatePagSeguroShippingTypeObject()
+	{
 
 		$shippingType = new PagSeguroShippingType();
 		$shippingType->setByType('NOT_SPECIFIED');
@@ -246,7 +260,8 @@ class ControllerPaymentPagSeguro extends Controller {
 	 * Generate PagSeguro Shipping Cost
 	 * @return double
 	 */
-	private function _generatePagSeguroShippingCost() {
+	private function _generatePagSeguroShippingCost()
+	{
 		$_value = 0;
 
 		if (!empty($this->_order_info['shipping_code'])) {
@@ -267,12 +282,16 @@ class ControllerPaymentPagSeguro extends Controller {
 	 * Perform PagSeguro Request
 	 * @param PagSeguroPaymentRequest $paymentRequest
 	 */
-	private function _performPagSeguroRequest(PagSeguroPaymentRequest $paymentRequest) {
+	private function _performPagSeguroRequest(PagSeguroPaymentRequest $paymentRequest)
+	{
 		$this->_credential = new PagSeguroAccountCredentials($this->config->get('pagseguro_email'), $this->config->get('pagseguro_token'));
 
-		try {
+		try
+		{
 			$this->_urlPagSeguro = $paymentRequest->register($this->_credential);
-		} catch (Exception $exc) {
+		}
+		catch (Exception $exc)
+		{
 			die($this->language->get('text_info'));
 		}
 	}
@@ -280,14 +299,16 @@ class ControllerPaymentPagSeguro extends Controller {
 	/**
 	 * Generate PagSEguro Order Status
 	 */
-	private function _generatePagSeguroOrderStatus() {
+	private function _generatePagSeguroOrderStatus()
+	{
 		$this->model_payment_pagseguro->savePagSeguroOrderStatus();
 	}
 
 	/**
 	 * Update Order Status
 	 */
-	private function _updateOrderStatus() {
+	private function _updateOrderStatus()
+	{
 
 		$id_language = (int) $this->_order_info['language_id'];
 		$code_language = $this->model_payment_pagseguro->getCodeLanguageById($id_language);
@@ -301,7 +322,8 @@ class ControllerPaymentPagSeguro extends Controller {
 	/**
 	 * Link for redirect PagSeguro
 	 */
-	private function _action() {
+	private function _action()
+	{
 
 		if (!empty($this->_urlPagSeguro )) {
 			$this->data['action'] = HTTP_SERVER . "index.php?route=payment/pagseguro_redirect";
@@ -314,7 +336,8 @@ class ControllerPaymentPagSeguro extends Controller {
 	 * @param type $value
 	 * @return boolean
 	 */
-	private function _isNotNull($value) {
+	private function _isNotNull($value)
+	{
 
 		if ($value != null && $value != "")
 			return TRUE;
@@ -325,7 +348,8 @@ class ControllerPaymentPagSeguro extends Controller {
 	/**
 	 * Return directory log
 	 */
-	private function _getDirectoryLog() {
+	private function _getDirectoryLog()
+	{
 		$_dir = str_replace('catalog/', '', DIR_APPLICATION);
 		return ($this->_isNotNull($this->config->get('pagseguro_directory')) == TRUE) ? $_dir . $this->config->get('pagseguro_directory') : null;
 	}
