@@ -30,6 +30,12 @@ local.properties
 
 
 #################
+## Sonar
+#################
+.sonar/
+sonar-project.properties
+
+#################
 ## Visual Studio
 #################
 
