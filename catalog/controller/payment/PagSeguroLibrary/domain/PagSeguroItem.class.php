@@ -1,175 +1,190 @@
-<?php if (!defined('PAGSEGURO_LIBRARY')) { die('No direct script access allowed'); }
-/*
-************************************************************************
-Copyright [2011] [PagSeguro Internet Ltda.]
-
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
-
-http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
-************************************************************************
-*/
-
-
+<?php
 /**
-* Represents a product/item in a transaction
-*/
-class PagSeguroItem {
+ * 2007-2014 [PagSeguro Internet Ltda.]
+ *
+ * NOTICE OF LICENSE
+ *
+ *Licensed under the Apache License, Version 2.0 (the "License");
+ *you may not use this file except in compliance with the License.
+ *You may obtain a copy of the License at
+ *
+ *http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *Unless required by applicable law or agreed to in writing, software
+ *distributed under the License is distributed on an "AS IS" BASIS,
+ *WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *See the License for the specific language governing permissions and
+ *limitations under the License.
+ *
+ *  @author    PagSeguro Internet Ltda.
+ *  @copyright 2007-2014 PagSeguro Internet Ltda.
+ *  @license   http://www.apache.org/licenses/LICENSE-2.0
+ */
 
-	/**
-	 * Product identifier, such as SKU
-	 */
-	private $id;
+/***
+ * Represents a product/item in a transaction
+ */
+class PagSeguroItem
+{
 
-	/**
-	 * Product description
-	 */
-	private $description;
+    /***
+     * Product identifier, such as SKU
+     */
+    private $id;
 
-	/**
-	 * Quantity
-	 */
-	private $quantity;
+    /***
+     * Product description
+     */
+    private $description;
 
-	/**
-	 * Product unit price
-	 */
-	private $amount;
+    /***
+     * Quantity
+     */
+    private $quantity;
 
-	/**
-	 * Single unit weight, in grams
-	 */
-	private $weight;
+    /***
+     * Product unit price
+     */
+    private $amount;
 
-	/**
-	 * Single unit shipping cost
-	 */
-	private $shippingCost;
+    /***
+     * Single unit weight, in grams
+     */
+    private $weight;
 
-	/**
-	 * 
-	 * Initializes a new instance of the Item class
-	 * @param array $data
-	 */
-	public function __construct(Array $data = null) {
-		if ($data) {
-			if (isset($data['id'])) {
-				$this->id = $data['id'];
-			}
-			if (isset($data['description'])) {
-				$this->description = $data['description'];
-			}
-			if (isset($data['quantity'])) {
-				$this->quantity = $data['quantity'];
-			}
-			if (isset($data['amount'])) {
-				$this->amount = $data['amount'];
-			}
-			if (isset($data['weight'])) {
-				$this->weight = $data['weight'];
-			}
-			if (isset($data['shippingCost'])) {
-				$this->shippingCost = $data['shippingCost'];
-			}
-		}
-	}
+    /***
+     * Single unit shipping cost
+     */
+    private $shippingCost;
 
-	/**
-	 * @return the product identifier
-	 */
-	public function getId() {
-		return $this->id;
-	}
+    /***
+     *
+     * Initializes a new instance of the Item class
+     * @param array $data
+     */
+    public function __construct(array $data = null)
+    {
+        if ($data) {
+            if (isset($data['id'])) {
+                $this->setId($data['id']);
+            }
+            if (isset($data['description'])) {
+                $this->setDescription($data['description']);
+            }
+            if (isset($data['quantity'])) {
+                $this->setQuantity($data['quantity']);
+            }
+            if (isset($data['amount'])) {
+                $this->setAmount($data['amount']);
+            }
+            if (isset($data['weight'])) {
+                $this->setWeight($data['weight']);
+            }
+            if (isset($data['shippingCost'])) {
+                $this->setShippingCost($data['shippingCost']);
+            }
+        }
+    }
 
-	/**
-	 * Sets the product identifier
-	 * @param String $id
-	 */
-	public function setId($id) {
-		$this->id = $id;
-	}
+    /***
+     * @return integer the product identifier
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 
-	/**
-	 * @return the product description
-	 */
-	public function getDescription() {
-		return $this->description;
-	}
+    /***
+     * Sets the product identifier
+     * @param String $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
 
-	/**
-	 * Sets the product description
-	 * @param String $description
-	 */
-	public function setDescription($description) {
-		$this->description = PagSeguroHelper::formatString($description, 255);
-	}
+    /***
+     * @return String the product description
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
 
-	/**
-	 * @return the quantity
-	 */
-	public function getQuantity() {
-		return $this->quantity;
-	}
+    /***
+     * Sets the product description
+     * @param String $description
+     */
+    public function setDescription($description)
+    {
+        $this->description = PagSeguroHelper::formatString($description, 255);
+    }
 
-	/**
-	 * Sets the quantity
-	 * @param String $quantity
-	 */
-	public function setQuantity($quantity) {
-		$this->quantity = $quantity;
-	}
+    /***
+     * @return integer the quantity
+     */
+    public function getQuantity()
+    {
+        return $this->quantity;
+    }
 
-	/**
-	 * @return the unit amount for this item
-	 */
-	public function getAmount() {
-		return $this->amount;
-	}
+    /***
+     * Sets the quantity
+     * @param String $quantity
+     */
+    public function setQuantity($quantity)
+    {
+        $this->quantity = $quantity;
+    }
 
-	/**
-	 * sets the unit amount fot this item
-	 * @param String $amount
-	 */
-	public function setAmount($amount) {
-		$this->amount = $amount;
-	}
+    /***
+     * @return the unit amount for this item
+     */
+    public function getAmount()
+    {
+        return $this->amount;
+    }
 
-	/**
-	 * @return the weight
-	 */
-	public function getWeight() {
-		return $this->weight;
-	}
+    /***
+     * sets the unit amount fot this item
+     * @param String $amount
+     */
+    public function setAmount($amount)
+    {
+        $this->amount = $amount;
+    }
 
-	/**
-	 * Sets the single unit weight
-	 * @param String $weight
-	 */
-	public function setWeight($weight) {
-		$this->weight = $weight;
-	}
+    /***
+     * @return float the weight
+     */
+    public function getWeight()
+    {
+        return $this->weight;
+    }
 
-	/**
-	 * @return the unit shipping cost for this item
-	 */
-	public function getShippingCost() {
-		return $this->shippingCost;
-	}
+    /***
+     * Sets the single unit weight
+     * @param String $weight
+     */
+    public function setWeight($weight)
+    {
+        $this->weight = $weight;
+    }
 
-	/**
-	 * Sets the unit shipping cost for this item
-	 * @param String $shippingCost
-	 */
-	public function setShippingCost($shippingCost) {
-		$this->shippingCost = $shippingCost;
-	}
-	
+    /***
+     * @return float the unit shipping cost for this item
+     */
+    public function getShippingCost()
+    {
+        return $this->shippingCost;
+    }
+
+    /***
+     * Sets the unit shipping cost for this item
+     * @param String $shippingCost
+     */
+    public function setShippingCost($shippingCost)
+    {
+        $this->shippingCost = $shippingCost;
+    }
 }
-?>

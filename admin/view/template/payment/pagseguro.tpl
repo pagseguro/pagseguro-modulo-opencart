@@ -81,6 +81,26 @@
                         <?php } ?>
                     </td>
                 </tr>
+
+                <tr>
+                    <td>
+                        <span class="required">*</span>
+                        <b> <?php echo $ps_environment; ?> </b> <br/>
+                        <?php echo $text_environment; ?>
+                    </td>
+                    <td>
+                        <select name="pagseguro_environment">
+                            <?php if($pagseguro_environment == 'production') { ?>
+                                <option value="production" selected>Produção</option>
+                                <option value="sandbox">Sandbox</option>
+                            <?php }else{ ?>
+                                <option value="sandbox" selected>Sandbox</option>
+                                <option value="production">Produção</option>
+                            <?php } ?>
+                        </select>
+                    </td>
+                </tr>
+
                     
                 <tr>
                     <td>

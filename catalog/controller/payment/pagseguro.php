@@ -274,7 +274,6 @@ class ControllerPaymentPagSeguro extends Controller
 				$_value = $_array_setting[$_shipping_cost['0'] . "_cost"];
 			}
 		}
-
 		return $_value;
 	}
 
@@ -284,6 +283,9 @@ class ControllerPaymentPagSeguro extends Controller
 	 */
 	private function _performPagSeguroRequest(PagSeguroPaymentRequest $paymentRequest)
 	{
+
+		PagSeguroConfig::setEnvironment($this->config->get('pagseguro_environment'));
+
 		$this->_credential = new PagSeguroAccountCredentials($this->config->get('pagseguro_email'), $this->config->get('pagseguro_token'));
 
 		try
