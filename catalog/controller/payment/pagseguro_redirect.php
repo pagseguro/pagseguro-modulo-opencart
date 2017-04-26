@@ -24,6 +24,10 @@
 class ControllerPaymentPagSeguroRedirect extends Controller
 {
 
+    /**
+     * Url PagSeguro
+     * @var url
+     */
 	private $_urlPagSeguro;
 
 	/**
@@ -32,8 +36,39 @@ class ControllerPaymentPagSeguroRedirect extends Controller
 	public function index()
 	{
 
-		if ($_POST)
-			$this->_redirect();
+		if ($_POST) {
+            if ($this->config->get('pagseguro_checkout') == 'lightbox') {
+                $this->data['breadcrumbs'] = array();
+
+                $this->data['breadcrumbs'][] = array(
+                    'text'      => $this->language->get('text_home'),
+                    'href'      => $this->url->link('common/home'),
+                    'separator' => false
+                );
+
+                $this->data['breadcrumbs'][] = array(
+                    'text'      => 'Checkout',
+                    'href'      => $this->url->link('information/static'),
+                    'separator' => $this->language->get('text_separator')
+                );
+
+                $this->template = 'default/template/payment/pagseguro_lightbox.tpl';
+                $this->children = array( //Required. The children files for the page.
+                    'common/column_left',
+                    'common/column_right',
+                    'common/content_top',
+                    'common/content_bottom',
+                    'common/footer',
+                    'common/header'
+                );
+
+                $this->data['code'] = '';
+                $this->data['environment'] = '';
+            }
+            $this->_redirect();
+        }
+        $this->response->setOutput($this->render());
+
 	}
 
 	/**
@@ -45,8 +80,16 @@ class ControllerPaymentPagSeguroRedirect extends Controller
 		$this->_urlPagSeguro = $this->request->post['url_ps'];
 
 		if (!empty($this->_urlPagSeguro )) {
-			header('Location: ' . $this->_urlPagSeguro);
-			$this->cart->clear();
+		    if($this->config->get('pagseguro_checkout') == 'lightbox'){
+		        $this->data['code'] = $this->_urlPagSeguro;
+		        $this->data['environment'] = $this->config->get('pagseguro_environment');
+
+                $this->cart->clear();
+            }else{
+                header('Location: ' . $this->_urlPagSeguro);
+                $this->cart->clear();
+            }
+
 		}
 	}
 }

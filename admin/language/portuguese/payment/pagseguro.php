@@ -27,6 +27,7 @@ $_['display_order'] = 'ORDEM DE EXIBIÇÃO:';
 $_['ps_email'] = 'E-MAIL:';
 $_['ps_token'] = 'TOKEN:';
 $_['ps_environment'] = 'AMBIENTE:';
+$_['ps_checkout'] = 'CHECKOUT';
 $_['url_forwarding'] = 'URL DE REDIRECIONAMENTO:';
 $_['url_notification'] = 'URL DE NOTIFICAÇÃO:';
 $_['charset'] = 'CHARSET:';
@@ -42,6 +43,8 @@ $_['text_order'] = 'Digite a ordem em que o PagSeguro deve aparecer no checkout 
 $_['text_email'] = 'Não tem conta no PagSeguro? <a href="https://pagseguro.uol.com.br/registration/registration.jhtml?ep=10&tipo=cadastro#!vendedor" target="_blank">Clique aqui </a> e se cadastre grátis.';
 $_['text_token'] = 'Não tem ou não sabe seu token? <a href="https://pagseguro.uol.com.br/integracao/token-de-seguranca.jhtml" target="_blank">Clique aqui </a> para gerar um novo.';
 $_['text_environment'] = 'Define o ambiente de uso';
+$_['text_checkoutPadrao'] = 'No checkout padrão o comprador, após escolher os produtos e/ou serviços, é redirecionado para fazer o pagamento no PagSeguro.';
+$_['text_checkoutLightbox'] = 'No checkout lightbox o comprador, após escolher os produtos e/ou serviços, fará o pagamento em uma janela que se sobrepõe a sua loja.';
 $_['text_url_forwarding'] = 'Seu cliente será redirecionado para sua loja ou para a URL que você informar neste campo. <a href="https://pagseguro.uol.com.br/integracao/pagamentos-via-api.jhtml" target="_blank">Clique aqui </a> para ativar.';
 $_['text_url_notification'] = 'Sempre que uma transação mudar de status, PagSeguro envia uma notificação para sua loja ou para a URL que você informar neste campo.';
 $_['text_charset'] = 'Definir o charset de acordo com a codificação do seu sistema.';

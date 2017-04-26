@@ -27,6 +27,7 @@ $_['display_order'] = 'DISPLAY ORDER:';
 $_['ps_email'] = 'E-MAIL:';
 $_['ps_token'] = 'TOKEN:';
 $_['ps_environment'] = "ENVIRONMENT";
+$_['ps_checkout'] = 'CHECKOUT';
 $_['url_forwarding'] = 'REDIRECT URL:';
 $_['url_notification'] = 'NOTIFICATION URL:';
 $_['charset'] = 'CHARSET:';
@@ -43,6 +44,8 @@ $_['text_order'] = 'Enter the order in which PagSeguro should appear in your sto
 $_['text_email'] = 'Do not have a PagSeguro account? <a href="https://pagseguro.uol.com.br/registration/registration.jhtml?ep=10&tipo=cadastro#!vendedor" target="_blank">Click here </a> and register for free.';
 $_['text_token'] = 'Do not have or do not know your token? <a href="https://pagseguro.uol.com.br/integracao/token-de-seguranca.jhtml" target="_blank">Click here </a> to generate a new one.';
 $_['text_environment'] = 'Sets the usage environment';
+$_['text_checkoutPadrao'] = 'In the standard checkout the buyer, after choosing the products and / or services, is redirected to make the payment in PagSeguro.';
+$_['text_checkoutLightbox'] = 'At the lightbox checkout the buyer, after choosing the products and / or services, will make the payment in a window that overlaps your store.';
 $_['text_url_forwarding'] = 'Your customer will be redirected back to your store or to the URL entered in this field. <a href="https://pagseguro.uol.com.br/integracao/pagamentos-via-api.jhtml" target="_blank">Click here </a> to activate.';
 $_['text_url_notification'] = 'Whenever a transaction change its status, PagSeguro sends a notification to your store or to the URL entered in this field.';
 $_['text_charset'] = 'Set the charset according to the coding of your system.';

@@ -1,8 +1,9 @@
 <!-- View Edit PagSeguro -->
 
 <?php echo $header; ?>
-   
+
 <!--  Home :: Payment :: PagSeguro  -->
+
 <div id="content">
     <div class="breadcrumb">
         <?php foreach ($breadcrumbs as $breadcrumb) { ?>
@@ -101,6 +102,25 @@
                     </td>
                 </tr>
 
+                <tr>
+                    <td>
+                        <span class="required">*</span>
+                        <b> <?php echo $ps_checkout; ?> </b> <br/>
+                    </td>
+                    <td>
+                        <select name="pagseguro_checkout" id="pagseguro_checkouts">
+                            <?php if($pagseguro_checkout == 'lightbox') { ?>
+                                <option value="padrao">Padrão</option>
+                                <option value="lightbox" selected>Lightbox</option>
+                            <?php }else{ ?>
+                                <option value="padrao" selected>Padrão</option>
+                                <option value="lightbox">Lightbox</option>
+                            <?php } ?>
+                        </select>
+                        <p id="pagseguro_option_lightbox_hint"> <?php echo $text_checkoutLightbox; ?> </p>
+                        <p id="pagseguro_option_padrao_hint"> <?php echo $text_checkoutPadrao; ?> </p>
+                    </td>
+                </tr>
                     
                 <tr>
                     <td>
@@ -173,9 +193,5 @@
     
     </div>
 </div>
-
-
-
-
 
 <?php echo $footer; ?>
