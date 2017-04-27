@@ -177,6 +177,8 @@ class ControllerPaymentPagSeguro extends Controller
 		return HTTPS_SERVER . "index.php?route=payment/pagseguro_notification";
 	}
 
+
+
 	/**
 	 * Generate PagSeguro Products
 	 * @return array
@@ -274,7 +276,6 @@ class ControllerPaymentPagSeguro extends Controller
 				$_value = $_array_setting[$_shipping_cost['0'] . "_cost"];
 			}
 		}
-
 		return $_value;
 	}
 
@@ -284,11 +285,19 @@ class ControllerPaymentPagSeguro extends Controller
 	 */
 	private function _performPagSeguroRequest(PagSeguroPaymentRequest $paymentRequest)
 	{
+
+		PagSeguroConfig::setEnvironment($this->config->get('pagseguro_environment'));
+
 		$this->_credential = new PagSeguroAccountCredentials($this->config->get('pagseguro_email'), $this->config->get('pagseguro_token'));
 
 		try
 		{
-			$this->_urlPagSeguro = $paymentRequest->register($this->_credential);
+			if($this->_isLightboxCheckoutType()) {
+                $this->_urlPagSeguro = $paymentRequest->register($this->_credential, $this->_isLightboxCheckoutType());
+
+            }else{
+                $this->_urlPagSeguro = $paymentRequest->register($this->_credential);
+			}
 		}
 		catch (Exception $exc)
 		{
@@ -319,16 +328,17 @@ class ControllerPaymentPagSeguro extends Controller
 		$id_order_status = $this->model_payment_pagseguro->getOrderStatusByName($wating_payment, $id_language);
 		$this->model_payment_pagseguro->updateOrder($this->_order_info['order_id'], $id_order_status);
 	}
+
 	/**
 	 * Link for redirect PagSeguro
 	 */
 	private function _action()
 	{
 
-		if (!empty($this->_urlPagSeguro )) {
-			$this->data['action'] = HTTP_SERVER . "index.php?route=payment/pagseguro_redirect";
-			$this->data['url_ps'] = $this->_urlPagSeguro;
-		}
+        if (!empty($this->_urlPagSeguro )) {
+            $this->data['action'] = HTTP_SERVER . "index.php?route=payment/pagseguro_redirect";
+            $this->data['url_ps'] = $this->_urlPagSeguro;
+        }
 	}
 
 	/**
@@ -352,6 +362,17 @@ class ControllerPaymentPagSeguro extends Controller
 	{
 		$_dir = str_replace('catalog/', '', DIR_APPLICATION);
 		return ($this->_isNotNull($this->config->get('pagseguro_directory')) == TRUE) ? $_dir . $this->config->get('pagseguro_directory') : null;
+	}
+
+    /**
+     * @return string
+     */
+    private function _isLightboxCheckoutType(){
+        if ($this->config->get('pagseguro_checkout') == 'lightbox'){
+        	return true;
+		}else{
+        	return false;
+		}
 	}
 }
 ?>
