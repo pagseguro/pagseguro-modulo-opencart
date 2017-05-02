@@ -2,6 +2,9 @@
 
 <?php echo $header; ?>
 
+<script type="text/javascript" src="view/javascript/jquery/pagseguromodule.js"></script>
+
+
 <!--  Home :: Payment :: PagSeguro  -->
 
 <div id="content">
