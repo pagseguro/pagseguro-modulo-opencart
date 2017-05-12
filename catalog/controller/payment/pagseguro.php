@@ -54,7 +54,7 @@ class ControllerPaymentPagSeguro extends Controller
 	 * Version API
 	 * @var version
 	 */
-	private $api_version = '1.0';
+	private $api_version = '1.3';
 
 	/**
 	 * The first method to be called by the payment PagSeguro treatment.
