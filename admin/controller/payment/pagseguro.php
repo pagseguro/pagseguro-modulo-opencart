@@ -110,7 +110,17 @@ class ControllerPaymentPagSeguro extends Controller
 		else
 			$this->data['pagseguro_token'] = $this->config->get('pagseguro_token');
 
-		if (isset($this->request->post['pagseguro_forwarding']))
+        if (isset($this->request->post['pagseguro_environment']))
+            $this->data['pagseguro_environment'] = $this->request->post['pagseguro_environment'];
+        else
+            $this->data['pagseguro_environment'] = $this->config->get('pagseguro_environment');
+
+        if (isset($this->request->post['pagseguro_checkout']))
+            $this->data['pagseguro_checkout'] = $this->request->post['pagseguro_checkout'];
+        else
+            $this->data['pagseguro_checkout'] = $this->config->get('pagseguro_checkout');
+
+        if (isset($this->request->post['pagseguro_forwarding']))
 			$this->data['pagseguro_forwarding'] = $this->request->post['pagseguro_forwarding'];
 		else
 			$this->data['pagseguro_forwarding'] = $this->validateRedirectUrl();
@@ -153,6 +163,13 @@ class ControllerPaymentPagSeguro extends Controller
 
 		$this->data['ps_token'] = $this->language->get('ps_token');
 		$this->data['text_token'] = $this->language->get('text_token');
+
+        $this->data['ps_environment'] = $this->language->get('ps_environment');
+        $this->data['text_environment'] = $this->language->get('text_environment');
+
+        $this->data['ps_checkout'] = $this->language->get('ps_checkout');
+        $this->data['text_checkoutPadrao'] = $this->language->get('text_checkoutPadrao');
+        $this->data['text_checkoutLightbox'] = $this->language->get('text_checkoutLightbox');
 
 		$this->data['url_forwarding'] = $this->language->get('url_forwarding');
 		$this->data['text_url_forwarding'] = $this->language->get('text_url_forwarding');

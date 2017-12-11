@@ -8,11 +8,11 @@ PagSeguro Config File
 $PagSeguroConfig = array();
 
 $PagSeguroConfig['environment'] = Array();
-$PagSeguroConfig['environment']['environment'] = "production";
+$PagSeguroConfig['environment']['environment'] = "sandbox";
 
 $PagSeguroConfig['credentials'] = Array();
-$PagSeguroConfig['credentials']['email'] = "your@email.com";
-$PagSeguroConfig['credentials']['token'] = "your_token_here";
+$PagSeguroConfig['credentials']['email'] = "your_email";
+$PagSeguroConfig['credentials']['token'] = "your_token";
 
 $PagSeguroConfig['application'] = Array();
 $PagSeguroConfig['application']['charset'] = "UTF-8"; // UTF-8, ISO-8859-1

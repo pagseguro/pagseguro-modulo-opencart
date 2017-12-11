@@ -131,6 +131,7 @@ class ControllerPaymentPagSeguroNotification extends Controller
 	 */
 	private function _createCredentials()
 	{
+
 		$this->obj_credentials = new PagSeguroAccountCredentials($this->config->get('pagseguro_email'), $this->config->get('pagseguro_token'));
 	}
 
@@ -156,6 +157,7 @@ class ControllerPaymentPagSeguroNotification extends Controller
 	 */
 	private function _createTransaction()
 	{
+        PagSeguroConfig::setEnvironment($this->config->get('pagseguro_environment'));
 		$this->obj_transaction = PagSeguroNotificationService::checkTransaction($this->obj_credentials, $this->notification_code);
 		$this->reference = $this->obj_transaction->getReference();
 	}

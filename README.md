@@ -39,6 +39,8 @@ Para acessar e configurar o módulo acesse o menu Extensions -> Payments -> PagS
  - **ordem de exibição**: define a ordem em que o PagSeguro vai aparecer no checkout de sua loja.
  - **e-mail**: e-mail cadastrado no PagSeguro.
  - **token**: token gerado no PagSeguro.
+ - **environment**: define o ambiente de uso
+ - **checkout**: especifica o modelo de checkout que será utilizado. É possível escolher entre checkout padrão, checkout lightbox.
  - **url de redirecionamento**: ao final do fluxo de pagamento no PagSeguro, seu cliente será redirecionado automaticamente para a página de confirmação em sua loja ou então para a URL que você informar neste campo. Para ativar o redirecionamento ao final do pagamento é preciso ativar o serviço de [Pagamentos via API]. Obs.: Esta URL é informada automaticamente e você só deve alterá-la caso deseje que seus clientes sejam redirecionados para outro local.
  - **url de notificação**: sempre que uma transação mudar de status, o PagSeguro envia uma notificação para sua loja ou para a URL que você informar neste campo. Obs.: Esta URL é informada automaticamente e você só deve alterá-la caso deseje receber as notificações em outro local.
  - **charset**: codificação do seu sistema (ISO-8859-1 ou UTF-8).
@@ -48,10 +50,29 @@ Para acessar e configurar o módulo acesse o menu Extensions -> Payments -> PagS
 
 Changelog
 ---------
+1.3
+
+- Adição da opção para utilizar o Checkout Lightbox;
+- Ajustes e melhorias em geral;
+
+1.2
+
+- Adição da funcionalidade de chaveamento Sandbox/Produção;
+- Mudanças no layout do painel de configuração;
+
+1.1
+
+- Upgrade da lib PHP no módulo;
+
 ---
 1.0
 
- - Versão inicial. Integração com API de checkout e API de notificações.
+ - Versão inicial. Integração com API de checkout e API de notificações;
+ - Integração com API de Notificação do PagSeguro;
+ - Adequação da licença;
+ - Notificação;
+ - Checkout Padrão;
+ - Integração com Sandbox;
 
 
 Licença
